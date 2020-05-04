@@ -33,7 +33,7 @@ function Header() {
         <span className="Header-titlePrimary">eardrum</span>
         <span className="Header-titleSecondary">monster</span>
       </Link>
-      <div className="Header-controls container">
+      <div className="Header-controls EMContainer">
         {authInfo != null ? (
           <>
             <div className="Header-user">

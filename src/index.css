@@ -3,12 +3,11 @@ html {
   font-family: "Raleway", sans-serif;
 }
 
-.container {
+.EMContainer {
   position: relative;
-  padding: 1rem;
 }
 
-.container::before {
+.EMContainer::before {
   background-color: #fdfdfb;
   position: absolute;
   top: 0;
@@ -17,6 +16,25 @@ html {
   right: 0;
   content: "";
   z-index: -1;
-  border-radius: 0.8rem;
+  border-radius: 4px;
   opacity: 0.9;
+}
+
+.EMCard {
+  position: relative;
+  padding: 1rem;
+  border: 3px solid #222;
+  border-radius: 1rem;
+}
+
+.EMCard::before {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  z-index: -1;
+  border-radius: 0.8rem;
 }
