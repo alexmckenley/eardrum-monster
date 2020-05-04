@@ -47,8 +47,8 @@ function Header() {
                 <>
                   <span className="Header-username">
                     {authInfo.displayName}{" "}
-                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   </span>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <a
                     className="Header-editUsername"
                     href="#"
