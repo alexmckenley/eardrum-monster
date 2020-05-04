@@ -33,23 +33,10 @@ function Header() {
         <span className="Header-titlePrimary">eardrum</span>
         <span className="Header-titleSecondary">monster</span>
       </Link>
-      <div className="Header-controls">
+      <div className="Header-controls container">
         {authInfo != null ? (
           <>
-            {broadcastMatch == null ? (
-              <Link
-                className="App-link"
-                to={`/u/${encodeURIComponent(authInfo.displayName)}`}
-              >
-                Host a channel
-              </Link>
-            ) : (
-              /* eslint-disable-next-line jsx-a11y/anchor-is-valid */
-              <a className="App-link" href="#" onClick={handleLogout}>
-                Logout
-              </a>
-            )}
-            <div className="App-headerPhoto">
+            <div className="Header-user">
               {editing ? (
                 <ChangeUsername
                   initialVal={authInfo.displayName}
@@ -57,11 +44,13 @@ function Header() {
                   onCancel={() => setEditing(false)}
                 />
               ) : (
-                <span className="App-smallLink">
-                  {authInfo.displayName}{" "}
-                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <>
+                  <span className="Header-username">
+                    {authInfo.displayName}{" "}
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  </span>
                   <a
-                    className="App-smallLink"
+                    className="Header-editUsername"
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
@@ -70,11 +59,11 @@ function Header() {
                   >
                     edit
                   </a>
-                </span>
+                </>
               )}
               {authInfo.userImg ? (
                 <img
-                  className="App-headerImg"
+                  className="Header-userImg"
                   src={authInfo.userImg}
                   alt="profile pic"
                 />
@@ -82,9 +71,22 @@ function Header() {
                 authInfo.displayName
               )}
             </div>
+            {broadcastMatch == null ? (
+              <Link
+                className="Header-link button"
+                to={`/u/${encodeURIComponent(authInfo.displayName)}`}
+              >
+                Host a channel
+              </Link>
+            ) : (
+              /* eslint-disable-next-line jsx-a11y/anchor-is-valid */
+              <a className="Header-link button" href="#" onClick={handleLogout}>
+                Logout
+              </a>
+            )}
           </>
         ) : (
-          <a className="App-link" href={authorizeURI}>
+          <a className="Header-link button" href={authorizeURI}>
             Host a channel
           </a>
         )}

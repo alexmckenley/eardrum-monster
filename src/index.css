@@ -1,0 +1,22 @@
+html {
+  background-color: #fdfdfb;
+  font-family: "Raleway", sans-serif;
+}
+
+.container {
+  position: relative;
+  padding: 1rem;
+}
+
+.container::before {
+  background-color: #fdfdfb;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  z-index: -1;
+  border-radius: 0.8rem;
+  opacity: 0.9;
+}
