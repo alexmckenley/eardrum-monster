@@ -24,6 +24,9 @@ type User
   listeners: [User] @connection(keyName: "byListeningTo", fields: ["userID"])
   displayName: String
   userImg: String
+  phEnabled: Boolean
+  currentSongEvent: SongEvent
+  phCount: Int
   type: String!
 }
 

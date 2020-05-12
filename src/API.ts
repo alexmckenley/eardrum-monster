@@ -23,6 +23,8 @@ export type ModelUserFilterInput = {
   listeningTo?: ModelStringInput | null;
   displayName?: ModelStringInput | null;
   userImg?: ModelStringInput | null;
+  phEnabled?: ModelBooleanInput | null;
+  phCount?: ModelIntInput | null;
   type?: ModelStringInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
@@ -80,6 +82,13 @@ export type ModelIntInput = {
   attributeType?: ModelAttributeTypes | null;
 };
 
+export type ModelBooleanInput = {
+  ne?: boolean | null;
+  eq?: boolean | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
 export type CreateUserInput = {
   userID: string;
   latestSongEvent?: number | null;
@@ -87,6 +96,8 @@ export type CreateUserInput = {
   listeningTo?: string | null;
   displayName?: string | null;
   userImg?: string | null;
+  phEnabled?: boolean | null;
+  phCount?: number | null;
   type: string;
 };
 
@@ -96,6 +107,8 @@ export type ModelUserConditionInput = {
   listeningTo?: ModelStringInput | null;
   displayName?: ModelStringInput | null;
   userImg?: ModelStringInput | null;
+  phEnabled?: ModelBooleanInput | null;
+  phCount?: ModelIntInput | null;
   type?: ModelStringInput | null;
   and?: Array<ModelUserConditionInput | null> | null;
   or?: Array<ModelUserConditionInput | null> | null;
@@ -109,6 +122,8 @@ export type UpdateUserInput = {
   listeningTo?: string | null;
   displayName?: string | null;
   userImg?: string | null;
+  phEnabled?: boolean | null;
+  phCount?: number | null;
   type?: string | null;
 };
 
@@ -323,6 +338,8 @@ export type CreateUserMutation = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null;
         type: string;
@@ -347,12 +364,73 @@ export type CreateUserMutation = {
         } | null;
         displayName: string | null;
         userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
         type: string;
       } | null> | null;
       nextToken: string | null;
     } | null;
     displayName: string | null;
     userImg: string | null;
+    phEnabled: boolean | null;
+    currentSongEvent: {
+      __typename: "SongEvent";
+      id: string;
+      spotifyURI: string;
+      timestamp: number;
+      position: number;
+      track: {
+        __typename: "Track";
+        uri: string;
+        trackID: string | null;
+        name: string | null;
+        durationMs: number | null;
+        albumName: string | null;
+        artistName: string | null;
+        albumImg: string | null;
+      } | null;
+      userID: string;
+      user: {
+        __typename: "User";
+        userID: string;
+        latestSongEvent: number | null;
+        latestListenPing: number | null;
+        listeningTo: string | null;
+        songEvents: {
+          __typename: "ModelSongEventConnection";
+          nextToken: string | null;
+        } | null;
+        listeners: {
+          __typename: "ModelUserConnection";
+          nextToken: string | null;
+        } | null;
+        displayName: string | null;
+        userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
+        type: string;
+      } | null;
+      type: string;
+    } | null;
+    phCount: number | null;
     type: string;
   } | null;
 };
@@ -396,6 +474,8 @@ export type UpdateUserMutation = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null;
         type: string;
@@ -420,12 +500,73 @@ export type UpdateUserMutation = {
         } | null;
         displayName: string | null;
         userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
         type: string;
       } | null> | null;
       nextToken: string | null;
     } | null;
     displayName: string | null;
     userImg: string | null;
+    phEnabled: boolean | null;
+    currentSongEvent: {
+      __typename: "SongEvent";
+      id: string;
+      spotifyURI: string;
+      timestamp: number;
+      position: number;
+      track: {
+        __typename: "Track";
+        uri: string;
+        trackID: string | null;
+        name: string | null;
+        durationMs: number | null;
+        albumName: string | null;
+        artistName: string | null;
+        albumImg: string | null;
+      } | null;
+      userID: string;
+      user: {
+        __typename: "User";
+        userID: string;
+        latestSongEvent: number | null;
+        latestListenPing: number | null;
+        listeningTo: string | null;
+        songEvents: {
+          __typename: "ModelSongEventConnection";
+          nextToken: string | null;
+        } | null;
+        listeners: {
+          __typename: "ModelUserConnection";
+          nextToken: string | null;
+        } | null;
+        displayName: string | null;
+        userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
+        type: string;
+      } | null;
+      type: string;
+    } | null;
+    phCount: number | null;
     type: string;
   } | null;
 };
@@ -469,6 +610,8 @@ export type DeleteUserMutation = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null;
         type: string;
@@ -493,12 +636,73 @@ export type DeleteUserMutation = {
         } | null;
         displayName: string | null;
         userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
         type: string;
       } | null> | null;
       nextToken: string | null;
     } | null;
     displayName: string | null;
     userImg: string | null;
+    phEnabled: boolean | null;
+    currentSongEvent: {
+      __typename: "SongEvent";
+      id: string;
+      spotifyURI: string;
+      timestamp: number;
+      position: number;
+      track: {
+        __typename: "Track";
+        uri: string;
+        trackID: string | null;
+        name: string | null;
+        durationMs: number | null;
+        albumName: string | null;
+        artistName: string | null;
+        albumImg: string | null;
+      } | null;
+      userID: string;
+      user: {
+        __typename: "User";
+        userID: string;
+        latestSongEvent: number | null;
+        latestListenPing: number | null;
+        listeningTo: string | null;
+        songEvents: {
+          __typename: "ModelSongEventConnection";
+          nextToken: string | null;
+        } | null;
+        listeners: {
+          __typename: "ModelUserConnection";
+          nextToken: string | null;
+        } | null;
+        displayName: string | null;
+        userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
+        type: string;
+      } | null;
+      type: string;
+    } | null;
+    phCount: number | null;
     type: string;
   } | null;
 };
@@ -555,12 +759,47 @@ export type CreateSongEventMutation = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null> | null;
         nextToken: string | null;
       } | null;
       displayName: string | null;
       userImg: string | null;
+      phEnabled: boolean | null;
+      currentSongEvent: {
+        __typename: "SongEvent";
+        id: string;
+        spotifyURI: string;
+        timestamp: number;
+        position: number;
+        track: {
+          __typename: "Track";
+          uri: string;
+          trackID: string | null;
+          name: string | null;
+          durationMs: number | null;
+          albumName: string | null;
+          artistName: string | null;
+          albumImg: string | null;
+        } | null;
+        userID: string;
+        user: {
+          __typename: "User";
+          userID: string;
+          latestSongEvent: number | null;
+          latestListenPing: number | null;
+          listeningTo: string | null;
+          displayName: string | null;
+          userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
+          type: string;
+        } | null;
+        type: string;
+      } | null;
+      phCount: number | null;
       type: string;
     } | null;
     type: string;
@@ -619,12 +858,47 @@ export type UpdateSongEventMutation = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null> | null;
         nextToken: string | null;
       } | null;
       displayName: string | null;
       userImg: string | null;
+      phEnabled: boolean | null;
+      currentSongEvent: {
+        __typename: "SongEvent";
+        id: string;
+        spotifyURI: string;
+        timestamp: number;
+        position: number;
+        track: {
+          __typename: "Track";
+          uri: string;
+          trackID: string | null;
+          name: string | null;
+          durationMs: number | null;
+          albumName: string | null;
+          artistName: string | null;
+          albumImg: string | null;
+        } | null;
+        userID: string;
+        user: {
+          __typename: "User";
+          userID: string;
+          latestSongEvent: number | null;
+          latestListenPing: number | null;
+          listeningTo: string | null;
+          displayName: string | null;
+          userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
+          type: string;
+        } | null;
+        type: string;
+      } | null;
+      phCount: number | null;
       type: string;
     } | null;
     type: string;
@@ -683,12 +957,47 @@ export type DeleteSongEventMutation = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null> | null;
         nextToken: string | null;
       } | null;
       displayName: string | null;
       userImg: string | null;
+      phEnabled: boolean | null;
+      currentSongEvent: {
+        __typename: "SongEvent";
+        id: string;
+        spotifyURI: string;
+        timestamp: number;
+        position: number;
+        track: {
+          __typename: "Track";
+          uri: string;
+          trackID: string | null;
+          name: string | null;
+          durationMs: number | null;
+          albumName: string | null;
+          artistName: string | null;
+          albumImg: string | null;
+        } | null;
+        userID: string;
+        user: {
+          __typename: "User";
+          userID: string;
+          latestSongEvent: number | null;
+          latestListenPing: number | null;
+          listeningTo: string | null;
+          displayName: string | null;
+          userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
+          type: string;
+        } | null;
+        type: string;
+      } | null;
+      phCount: number | null;
       type: string;
     } | null;
     type: string;
@@ -787,6 +1096,8 @@ export type GetUserQuery = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null;
         type: string;
@@ -811,12 +1122,73 @@ export type GetUserQuery = {
         } | null;
         displayName: string | null;
         userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
         type: string;
       } | null> | null;
       nextToken: string | null;
     } | null;
     displayName: string | null;
     userImg: string | null;
+    phEnabled: boolean | null;
+    currentSongEvent: {
+      __typename: "SongEvent";
+      id: string;
+      spotifyURI: string;
+      timestamp: number;
+      position: number;
+      track: {
+        __typename: "Track";
+        uri: string;
+        trackID: string | null;
+        name: string | null;
+        durationMs: number | null;
+        albumName: string | null;
+        artistName: string | null;
+        albumImg: string | null;
+      } | null;
+      userID: string;
+      user: {
+        __typename: "User";
+        userID: string;
+        latestSongEvent: number | null;
+        latestListenPing: number | null;
+        listeningTo: string | null;
+        songEvents: {
+          __typename: "ModelSongEventConnection";
+          nextToken: string | null;
+        } | null;
+        listeners: {
+          __typename: "ModelUserConnection";
+          nextToken: string | null;
+        } | null;
+        displayName: string | null;
+        userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
+        type: string;
+      } | null;
+      type: string;
+    } | null;
+    phCount: number | null;
     type: string;
   } | null;
 };
@@ -861,12 +1233,47 @@ export type ListUsersQuery = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null> | null;
         nextToken: string | null;
       } | null;
       displayName: string | null;
       userImg: string | null;
+      phEnabled: boolean | null;
+      currentSongEvent: {
+        __typename: "SongEvent";
+        id: string;
+        spotifyURI: string;
+        timestamp: number;
+        position: number;
+        track: {
+          __typename: "Track";
+          uri: string;
+          trackID: string | null;
+          name: string | null;
+          durationMs: number | null;
+          albumName: string | null;
+          artistName: string | null;
+          albumImg: string | null;
+        } | null;
+        userID: string;
+        user: {
+          __typename: "User";
+          userID: string;
+          latestSongEvent: number | null;
+          latestListenPing: number | null;
+          listeningTo: string | null;
+          displayName: string | null;
+          userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
+          type: string;
+        } | null;
+        type: string;
+      } | null;
+      phCount: number | null;
       type: string;
     } | null> | null;
     nextToken: string | null;
@@ -924,12 +1331,47 @@ export type GetSongEventQuery = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null> | null;
         nextToken: string | null;
       } | null;
       displayName: string | null;
       userImg: string | null;
+      phEnabled: boolean | null;
+      currentSongEvent: {
+        __typename: "SongEvent";
+        id: string;
+        spotifyURI: string;
+        timestamp: number;
+        position: number;
+        track: {
+          __typename: "Track";
+          uri: string;
+          trackID: string | null;
+          name: string | null;
+          durationMs: number | null;
+          albumName: string | null;
+          artistName: string | null;
+          albumImg: string | null;
+        } | null;
+        userID: string;
+        user: {
+          __typename: "User";
+          userID: string;
+          latestSongEvent: number | null;
+          latestListenPing: number | null;
+          listeningTo: string | null;
+          displayName: string | null;
+          userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
+          type: string;
+        } | null;
+        type: string;
+      } | null;
+      phCount: number | null;
       type: string;
     } | null;
     type: string;
@@ -978,6 +1420,17 @@ export type ListSongEventsQuery = {
         } | null;
         displayName: string | null;
         userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
         type: string;
       } | null;
       type: string;
@@ -1069,12 +1522,47 @@ export type UsersByLatestSongEventQuery = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null> | null;
         nextToken: string | null;
       } | null;
       displayName: string | null;
       userImg: string | null;
+      phEnabled: boolean | null;
+      currentSongEvent: {
+        __typename: "SongEvent";
+        id: string;
+        spotifyURI: string;
+        timestamp: number;
+        position: number;
+        track: {
+          __typename: "Track";
+          uri: string;
+          trackID: string | null;
+          name: string | null;
+          durationMs: number | null;
+          albumName: string | null;
+          artistName: string | null;
+          albumImg: string | null;
+        } | null;
+        userID: string;
+        user: {
+          __typename: "User";
+          userID: string;
+          latestSongEvent: number | null;
+          latestListenPing: number | null;
+          listeningTo: string | null;
+          displayName: string | null;
+          userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
+          type: string;
+        } | null;
+        type: string;
+      } | null;
+      phCount: number | null;
       type: string;
     } | null> | null;
     nextToken: string | null;
@@ -1122,12 +1610,47 @@ export type UsersByListeningToQuery = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null> | null;
         nextToken: string | null;
       } | null;
       displayName: string | null;
       userImg: string | null;
+      phEnabled: boolean | null;
+      currentSongEvent: {
+        __typename: "SongEvent";
+        id: string;
+        spotifyURI: string;
+        timestamp: number;
+        position: number;
+        track: {
+          __typename: "Track";
+          uri: string;
+          trackID: string | null;
+          name: string | null;
+          durationMs: number | null;
+          albumName: string | null;
+          artistName: string | null;
+          albumImg: string | null;
+        } | null;
+        userID: string;
+        user: {
+          __typename: "User";
+          userID: string;
+          latestSongEvent: number | null;
+          latestListenPing: number | null;
+          listeningTo: string | null;
+          displayName: string | null;
+          userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
+          type: string;
+        } | null;
+        type: string;
+      } | null;
+      phCount: number | null;
       type: string;
     } | null> | null;
     nextToken: string | null;
@@ -1175,12 +1698,47 @@ export type UsersByDisplayNameQuery = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null> | null;
         nextToken: string | null;
       } | null;
       displayName: string | null;
       userImg: string | null;
+      phEnabled: boolean | null;
+      currentSongEvent: {
+        __typename: "SongEvent";
+        id: string;
+        spotifyURI: string;
+        timestamp: number;
+        position: number;
+        track: {
+          __typename: "Track";
+          uri: string;
+          trackID: string | null;
+          name: string | null;
+          durationMs: number | null;
+          albumName: string | null;
+          artistName: string | null;
+          albumImg: string | null;
+        } | null;
+        userID: string;
+        user: {
+          __typename: "User";
+          userID: string;
+          latestSongEvent: number | null;
+          latestListenPing: number | null;
+          listeningTo: string | null;
+          displayName: string | null;
+          userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
+          type: string;
+        } | null;
+        type: string;
+      } | null;
+      phCount: number | null;
       type: string;
     } | null> | null;
     nextToken: string | null;
@@ -1232,6 +1790,17 @@ export type SongEventsByUserIdQuery = {
         } | null;
         displayName: string | null;
         userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
         type: string;
       } | null;
       type: string;
@@ -1285,6 +1854,17 @@ export type SongEventsByTypeQuery = {
         } | null;
         displayName: string | null;
         userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
         type: string;
       } | null;
       type: string;
@@ -1344,12 +1924,47 @@ export type OnCreateSongEventSubscription = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null> | null;
         nextToken: string | null;
       } | null;
       displayName: string | null;
       userImg: string | null;
+      phEnabled: boolean | null;
+      currentSongEvent: {
+        __typename: "SongEvent";
+        id: string;
+        spotifyURI: string;
+        timestamp: number;
+        position: number;
+        track: {
+          __typename: "Track";
+          uri: string;
+          trackID: string | null;
+          name: string | null;
+          durationMs: number | null;
+          albumName: string | null;
+          artistName: string | null;
+          albumImg: string | null;
+        } | null;
+        userID: string;
+        user: {
+          __typename: "User";
+          userID: string;
+          latestSongEvent: number | null;
+          latestListenPing: number | null;
+          listeningTo: string | null;
+          displayName: string | null;
+          userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
+          type: string;
+        } | null;
+        type: string;
+      } | null;
+      phCount: number | null;
       type: string;
     } | null;
     type: string;
@@ -1394,6 +2009,8 @@ export type OnUpdateUserByListeningToSubscription = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null;
         type: string;
@@ -1418,12 +2035,73 @@ export type OnUpdateUserByListeningToSubscription = {
         } | null;
         displayName: string | null;
         userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
         type: string;
       } | null> | null;
       nextToken: string | null;
     } | null;
     displayName: string | null;
     userImg: string | null;
+    phEnabled: boolean | null;
+    currentSongEvent: {
+      __typename: "SongEvent";
+      id: string;
+      spotifyURI: string;
+      timestamp: number;
+      position: number;
+      track: {
+        __typename: "Track";
+        uri: string;
+        trackID: string | null;
+        name: string | null;
+        durationMs: number | null;
+        albumName: string | null;
+        artistName: string | null;
+        albumImg: string | null;
+      } | null;
+      userID: string;
+      user: {
+        __typename: "User";
+        userID: string;
+        latestSongEvent: number | null;
+        latestListenPing: number | null;
+        listeningTo: string | null;
+        songEvents: {
+          __typename: "ModelSongEventConnection";
+          nextToken: string | null;
+        } | null;
+        listeners: {
+          __typename: "ModelUserConnection";
+          nextToken: string | null;
+        } | null;
+        displayName: string | null;
+        userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
+        type: string;
+      } | null;
+      type: string;
+    } | null;
+    phCount: number | null;
     type: string;
   } | null;
 };
@@ -1466,6 +2144,8 @@ export type OnUpdateUserByUserIdSubscription = {
           listeningTo: string | null;
           displayName: string | null;
           userImg: string | null;
+          phEnabled: boolean | null;
+          phCount: number | null;
           type: string;
         } | null;
         type: string;
@@ -1490,12 +2170,73 @@ export type OnUpdateUserByUserIdSubscription = {
         } | null;
         displayName: string | null;
         userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
         type: string;
       } | null> | null;
       nextToken: string | null;
     } | null;
     displayName: string | null;
     userImg: string | null;
+    phEnabled: boolean | null;
+    currentSongEvent: {
+      __typename: "SongEvent";
+      id: string;
+      spotifyURI: string;
+      timestamp: number;
+      position: number;
+      track: {
+        __typename: "Track";
+        uri: string;
+        trackID: string | null;
+        name: string | null;
+        durationMs: number | null;
+        albumName: string | null;
+        artistName: string | null;
+        albumImg: string | null;
+      } | null;
+      userID: string;
+      user: {
+        __typename: "User";
+        userID: string;
+        latestSongEvent: number | null;
+        latestListenPing: number | null;
+        listeningTo: string | null;
+        songEvents: {
+          __typename: "ModelSongEventConnection";
+          nextToken: string | null;
+        } | null;
+        listeners: {
+          __typename: "ModelUserConnection";
+          nextToken: string | null;
+        } | null;
+        displayName: string | null;
+        userImg: string | null;
+        phEnabled: boolean | null;
+        currentSongEvent: {
+          __typename: "SongEvent";
+          id: string;
+          spotifyURI: string;
+          timestamp: number;
+          position: number;
+          userID: string;
+          type: string;
+        } | null;
+        phCount: number | null;
+        type: string;
+      } | null;
+      type: string;
+    } | null;
+    phCount: number | null;
     type: string;
   } | null;
 };

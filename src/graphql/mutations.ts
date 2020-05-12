@@ -35,6 +35,8 @@ export const createUser = /* GraphQL */ `
             listeningTo
             displayName
             userImg
+            phEnabled
+            phCount
             type
           }
           type
@@ -55,12 +57,66 @@ export const createUser = /* GraphQL */ `
           }
           displayName
           userImg
+          phEnabled
+          currentSongEvent {
+            id
+            spotifyURI
+            timestamp
+            position
+            userID
+            type
+          }
+          phCount
           type
         }
         nextToken
       }
       displayName
       userImg
+      phEnabled
+      currentSongEvent {
+        id
+        spotifyURI
+        timestamp
+        position
+        track {
+          uri
+          trackID
+          name
+          durationMs
+          albumName
+          artistName
+          albumImg
+        }
+        userID
+        user {
+          userID
+          latestSongEvent
+          latestListenPing
+          listeningTo
+          songEvents {
+            nextToken
+          }
+          listeners {
+            nextToken
+          }
+          displayName
+          userImg
+          phEnabled
+          currentSongEvent {
+            id
+            spotifyURI
+            timestamp
+            position
+            userID
+            type
+          }
+          phCount
+          type
+        }
+        type
+      }
+      phCount
       type
     }
   }
@@ -98,6 +154,8 @@ export const updateUser = /* GraphQL */ `
             listeningTo
             displayName
             userImg
+            phEnabled
+            phCount
             type
           }
           type
@@ -118,12 +176,66 @@ export const updateUser = /* GraphQL */ `
           }
           displayName
           userImg
+          phEnabled
+          currentSongEvent {
+            id
+            spotifyURI
+            timestamp
+            position
+            userID
+            type
+          }
+          phCount
           type
         }
         nextToken
       }
       displayName
       userImg
+      phEnabled
+      currentSongEvent {
+        id
+        spotifyURI
+        timestamp
+        position
+        track {
+          uri
+          trackID
+          name
+          durationMs
+          albumName
+          artistName
+          albumImg
+        }
+        userID
+        user {
+          userID
+          latestSongEvent
+          latestListenPing
+          listeningTo
+          songEvents {
+            nextToken
+          }
+          listeners {
+            nextToken
+          }
+          displayName
+          userImg
+          phEnabled
+          currentSongEvent {
+            id
+            spotifyURI
+            timestamp
+            position
+            userID
+            type
+          }
+          phCount
+          type
+        }
+        type
+      }
+      phCount
       type
     }
   }
@@ -161,6 +273,8 @@ export const deleteUser = /* GraphQL */ `
             listeningTo
             displayName
             userImg
+            phEnabled
+            phCount
             type
           }
           type
@@ -181,12 +295,66 @@ export const deleteUser = /* GraphQL */ `
           }
           displayName
           userImg
+          phEnabled
+          currentSongEvent {
+            id
+            spotifyURI
+            timestamp
+            position
+            userID
+            type
+          }
+          phCount
           type
         }
         nextToken
       }
       displayName
       userImg
+      phEnabled
+      currentSongEvent {
+        id
+        spotifyURI
+        timestamp
+        position
+        track {
+          uri
+          trackID
+          name
+          durationMs
+          albumName
+          artistName
+          albumImg
+        }
+        userID
+        user {
+          userID
+          latestSongEvent
+          latestListenPing
+          listeningTo
+          songEvents {
+            nextToken
+          }
+          listeners {
+            nextToken
+          }
+          displayName
+          userImg
+          phEnabled
+          currentSongEvent {
+            id
+            spotifyURI
+            timestamp
+            position
+            userID
+            type
+          }
+          phCount
+          type
+        }
+        type
+      }
+      phCount
       type
     }
   }
@@ -235,12 +403,44 @@ export const createSongEvent = /* GraphQL */ `
             listeningTo
             displayName
             userImg
+            phEnabled
+            phCount
             type
           }
           nextToken
         }
         displayName
         userImg
+        phEnabled
+        currentSongEvent {
+          id
+          spotifyURI
+          timestamp
+          position
+          track {
+            uri
+            trackID
+            name
+            durationMs
+            albumName
+            artistName
+            albumImg
+          }
+          userID
+          user {
+            userID
+            latestSongEvent
+            latestListenPing
+            listeningTo
+            displayName
+            userImg
+            phEnabled
+            phCount
+            type
+          }
+          type
+        }
+        phCount
         type
       }
       type
@@ -291,12 +491,44 @@ export const updateSongEvent = /* GraphQL */ `
             listeningTo
             displayName
             userImg
+            phEnabled
+            phCount
             type
           }
           nextToken
         }
         displayName
         userImg
+        phEnabled
+        currentSongEvent {
+          id
+          spotifyURI
+          timestamp
+          position
+          track {
+            uri
+            trackID
+            name
+            durationMs
+            albumName
+            artistName
+            albumImg
+          }
+          userID
+          user {
+            userID
+            latestSongEvent
+            latestListenPing
+            listeningTo
+            displayName
+            userImg
+            phEnabled
+            phCount
+            type
+          }
+          type
+        }
+        phCount
         type
       }
       type
@@ -347,12 +579,44 @@ export const deleteSongEvent = /* GraphQL */ `
             listeningTo
             displayName
             userImg
+            phEnabled
+            phCount
             type
           }
           nextToken
         }
         displayName
         userImg
+        phEnabled
+        currentSongEvent {
+          id
+          spotifyURI
+          timestamp
+          position
+          track {
+            uri
+            trackID
+            name
+            durationMs
+            albumName
+            artistName
+            albumImg
+          }
+          userID
+          user {
+            userID
+            latestSongEvent
+            latestListenPing
+            listeningTo
+            displayName
+            userImg
+            phEnabled
+            phCount
+            type
+          }
+          type
+        }
+        phCount
         type
       }
       type
