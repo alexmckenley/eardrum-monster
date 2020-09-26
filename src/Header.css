@@ -19,8 +19,8 @@
   flex-direction: column;
   position: relative;
   text-decoration: none;
-  margin-top: -3.5rem;
-  margin-bottom: -3.5rem;
+  margin-top: -4rem;
+  margin-bottom: -4rem;
 }
 
 .Header-controls {
@@ -53,6 +53,42 @@
   transform: rotate(-2deg) translate3d(0, -3.5rem, 0);
   -webkit-text-stroke: 0.3rem black;
   text-shadow: 0px 0px 10px black;
+}
+
+/* Large tablets */
+@media (min-width: 700px) {
+  .Header-title {
+    margin-top: -7rem;
+    margin-bottom: -7rem;
+  }
+  .Header-titlePrimary {
+    font-size: 9rem;
+    transform: rotate(7deg) translate3d(0, 5rem, 0);
+  }
+  .Header-titleSecondary {
+    font-size: 9rem;
+    transform: rotate(-2deg) translate3d(0, -5rem, 0);
+  }
+}
+
+/* Larger than desktop */
+@media (min-width: 900px) {
+  .Header-controls {
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+  .Header-title {
+    margin-top: -8rem;
+    margin-bottom: -8rem;
+  }
+  .Header-titlePrimary {
+    font-size: 12rem;
+    transform: rotate(7deg) translate3d(0, 6rem, 0);
+  }
+  .Header-titleSecondary {
+    font-size: 12rem;
+    transform: rotate(-2deg) translate3d(0, -6rem, 0);
+  }
 }
 
 .Header-userImg {
@@ -93,41 +129,5 @@
     flex-basis: 30%;
     justify-content: center;
     flex-direction: column;
-  }
-}
-
-/* Large tablets */
-@media (min-width: 700px) {
-  .Header-title {
-    margin-top: -5rem;
-    margin-bottom: -5rem;
-  }
-  .Header-titlePrimary {
-    font-size: 9rem;
-    transform: rotate(7deg) translate3d(0, 5rem, 0);
-  }
-  .Header-titleSecondary {
-    font-size: 9rem;
-    transform: rotate(-2deg) translate3d(0, -5rem, 0);
-  }
-}
-
-/* Larger than desktop */
-@media (min-width: 900px) {
-  .Header-controls {
-    flex-direction: row-reverse;
-    justify-content: center;
-  }
-  .Header-title {
-    margin-top: -6rem;
-    margin-bottom: -6rem;
-  }
-  .Header-titlePrimary {
-    font-size: 12rem;
-    transform: rotate(7deg) translate3d(0, 6rem, 0);
-  }
-  .Header-titleSecondary {
-    font-size: 12rem;
-    transform: rotate(-2deg) translate3d(0, -6rem, 0);
   }
 }
