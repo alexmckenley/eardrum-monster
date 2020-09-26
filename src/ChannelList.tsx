@@ -25,10 +25,12 @@ function Channel({
 }) {
   return (
     <div className="Home-user EMCard">
-      <div className="Home-userTitle">{title}</div>
-      <div className="Home-userSubtitle">{subtitle}</div>
       <img className="Home-userImg" src={img ?? logo} alt="Album art" />
-      {cta}
+      <div className="Home-userText">
+        <div className="Home-userTitle">{title}</div>
+        <div className="Home-userSubtitle">{subtitle}</div>
+        {cta}
+      </div>
     </div>
   );
 }

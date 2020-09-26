@@ -6,15 +6,15 @@ function Home() {
   /* eslint-disable jsx-a11y/accessible-emoji */
   return (
     <div className="Home EMContainer">
-      <div className="">
-        <em>
-          eardrum.monster allows you to sync your spotify client with friends
-        </em>
-      </div>
       <div className="Home-list">
         <ChannelList />
       </div>
       <div className="Home-content">
+        <div className="">
+          <em>
+            eardrum.monster allows you to sync your spotify client with friends
+          </em>
+        </div>
         <h1>How do I use it?</h1>
         <div>1. Join a channel or create your own ☝️</div>
         <div>2. Share the URL with your friends️</div>
