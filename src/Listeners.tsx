@@ -65,13 +65,28 @@ export default function Listeners({
             );
             const isListening = isUserListening(onUpdateUserByListeningTo);
             let wasListening = isUserListening(items[index] as User);
+            console.log(onUpdateUserByListeningTo.displayName);
+            console.log(
+              (onUpdateUserByListeningTo.latestListenPing ?? 0) -
+                (items[index]?.latestListenPing ?? 0)
+            );
             if (index >= 0) {
               items[index] = onUpdateUserByListeningTo;
             } else {
               items.push(onUpdateUserByListeningTo);
             }
             if (isListening && !wasListening) {
+              console.log(onUpdateUserByListeningTo.displayName);
               const audio = new Audio(process.env.PUBLIC_URL + "/notif.wav");
+              console.log(
+                "isListening: " + isListening + " wasListening: " + wasListening
+              );
+              console.log("index: ", index);
+              console.log("items: ", items);
+              console.log(
+                "onUpdateUserByListeningTo: ",
+                onUpdateUserByListeningTo
+              );
               audio.volume = 0.2;
               audio.play();
             }

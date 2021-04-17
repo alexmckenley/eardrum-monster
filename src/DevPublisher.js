@@ -35,7 +35,7 @@ export default function DevPublisher({ hostUserID }) {
       API.graphql(
         graphqlOperation(mutations.createSongEvent, { input: songEvent })
       ).then((data) => console.log("Publishing: ", data));
-    }, 5000);
+    }, 60000);
 
     return () => {
       clearInterval(timeoutID);
