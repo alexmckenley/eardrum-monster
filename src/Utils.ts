@@ -24,7 +24,7 @@ export function isUserListening(user: User): boolean {
     return false;
   }
   const hasRecentPing =
-    Math.floor(Date.now() / 1000) - (user.latestListenPing ?? 0) < 30;
+    Math.floor(Date.now() / 1000) - (user.latestListenPing ?? 0) < 61;
   return hasRecentPing;
 }
 
